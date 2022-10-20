@@ -13,34 +13,28 @@
 # Output: [-1,-1]
 
 class Solution:
-    def findLeftResult(self, nums, target, mid):
-        if mid >= 0 and nums[mid] == target:
+    def findResult(self, nums, target, mid, direction):
+        if direction == "Left" and mid >= 0 and nums[mid] == target:
             if mid-1 >= 0 and nums[mid-1] == target:
                 return "left"
             return "found"
-        elif nums[mid] > target:
-            return "left"
-        elif nums[mid] < target:
-            return "right"
-
-    def findRightResult(self, nums, target, mid):
-        if mid <= len(nums)-1 and nums[mid] == target:
+        elif direction == "Right" and mid <= len(nums)-1 and nums[mid] == target:
             if mid+1 <= len(nums)-1 and nums[mid+1] == target:
                 return "right"
             return "found"
-        elif nums[mid] < target:
-            return "right"
         elif nums[mid] > target:
             return "left"
+        elif nums[mid] < target:
+            return "right"
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
         if len(nums) == 0:
             return [-1, -1]
         start, end= 0, len(nums)-1
         result = [-1, -1]
         while start <= end:
             mid = (start+end) // 2
-            left_result = self.findLeftResult(nums, target, mid)
+            left_result = self.findResult(nums, target, mid, direction = "Left")
             if left_result == "found":
                 result[0] = mid
                 break
@@ -52,7 +46,7 @@ class Solution:
         start, end= result[0], len(nums)-1
         while start <= end:
             mid = (start+end)//2
-            right_result = self.findRightResult(nums, target, mid)
+            right_result = self.findResult(nums, target, mid, direction = "Right")
             if right_result == "found":
                 result[1] = mid
                 break
