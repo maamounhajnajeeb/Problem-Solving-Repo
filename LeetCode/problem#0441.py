@@ -9,9 +9,8 @@
 #                   Output: 3
 
 class Solution:
-    def arrangeCoins(self, n: int) -> int:
-        start, end = 1, n
-        res = 0
+    def arrangeCoins(self, n : int):
+        start, end = 0, n
         while start <= end:
             mid = (start+end)//2
             guess = mid*(mid+1)//2
@@ -19,5 +18,5 @@ class Solution:
                 end = mid-1
             elif guess <= n:
                 start = mid+1
-                res = max(mid, res)
-        return res
+                row = mid
+        return row
