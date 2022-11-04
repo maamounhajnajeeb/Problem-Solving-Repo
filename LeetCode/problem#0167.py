@@ -26,8 +26,7 @@
 # Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
 
 class Solution:
-    
-    def upLeftSide(self, numbers: list[int], target: int, i: int, j: int):
+    def downRightSide(self, numbers: list[int], target: int, i: int, j: int, operator: str) -> int:
         while i <= j:
             mid = (i+j) // 2
             if numbers[mid] == target:
@@ -36,18 +35,7 @@ class Solution:
                 j = mid-1
             elif numbers[mid] < target:
                 i = mid+1
-        return i
-    
-    def downRightSide(self, numbers: list[int], target: int, i: int, j: int):
-        while i <= j:
-            mid = (i+j) // 2
-            if numbers[mid] == target:
-                return mid
-            elif numbers[mid] > target:
-                j = mid-1
-            elif numbers[mid] < target:
-                i = mid+1
-        return j
+        return j if operator == "j" else i
 
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
         i: int; j:int
@@ -58,9 +46,9 @@ class Solution:
                 return [i+1, j+1]
             elif condition > numbers[i]:
                 # left
-                i = self.upLeftSide(numbers, condition, i, j)
+                i = self.downRightSide(numbers, condition, i, j, "i")
             elif condition < numbers[i]:
                 # right
                 cond2 = target-numbers[i]
-                j = self.downRightSide(numbers, cond2, i+1, j+1)
+                j = self.downRightSide(numbers, cond2, i+1, j+1, "j")
         return False
