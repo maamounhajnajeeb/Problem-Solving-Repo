@@ -102,7 +102,7 @@ class Solution:
     
     def threeSum(self, nums: list[int]) -> list[list[int]]:
         nums.sort()
-        res: dict, ind: int, length: int
+        res: dict; ind: int; length: int
         res, ind, length = {}, 0, len(nums)
         for i in range(length):
             pivot: int = nums[i]
