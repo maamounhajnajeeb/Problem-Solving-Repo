@@ -20,15 +20,14 @@ class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         j: int = 0
         current = head
-        while head != []:
+        while head:
             try:
                 head = head.next
             except AttributeError:
                 break
             j += 1
-        j = j-1
         i: int = 0
-        while i<j:
+        while i<j-1:
             current = current.next
             i += 1
             j -= 1
