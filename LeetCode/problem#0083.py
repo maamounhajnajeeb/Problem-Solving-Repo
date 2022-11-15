@@ -37,11 +37,14 @@ class Solution:
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
+        if not head:
+            return head
+        elif not head.next:
             return head
         curr = head
         while curr.next:
             if curr.val == curr.next.val:
+                curr.next.val = None
                 curr.next = curr.next.next
             elif curr.val != curr.next.val:
                 curr = curr.next
