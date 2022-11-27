@@ -47,3 +47,41 @@ class Solution:
             l1 = l1.next if l1 else headB
             l2 = l2.next if l2 else headA
         return l1
+
+    
+## The Second Solution ##
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    
+    def __findLength(self, head):
+        counter: int = 0
+        while head:
+            head, counter = head.next, counter+1
+        return counter
+    
+    def getIntersectionNode(self, headA: Optional[ListNode], headB: Optional[ListNode]) -> Optional[ListNode]:
+        lenA: int; lenB: int
+        lenA, lenB = self.__findLength(headA), self.__findLength(headB)
+        
+        pointerA: Optional[ListNode]; pointerB: Optional[ListNode]
+        pointerA, pointerB = headA, headB
+        
+        operation = lenA-lenB
+        if operation > 0:
+            while operation != 0:
+                pointerA, operation = pointerA.next, operation-1
+        elif operation < 0:
+            while operation != 0:
+                pointerB, operation = pointerB.next, operation+1
+        
+        while pointerB and pointerA:
+            if pointerA == pointerB: 
+                return pointerA
+            pointerA, pointerB = pointerA.next,pointerB.next
+        return None
