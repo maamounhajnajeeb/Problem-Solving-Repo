@@ -26,15 +26,14 @@ class Solution:
             return head
         pre: Optional[ListNode]; curr: Optional[ListNode]; nextHead: Optional[ListNode]
         pre, curr, nextHead = None, head, head.next.next
-        if curr.next:
-            counter: int = 0
-            while counter < 2 and curr:
-                nxt = curr.next
-                curr.next = pre
-                pre = curr
-                curr, counter = nxt, counter+1
-            curr: Optional[Node] = pre
-            while curr.next:
-                curr = curr.next
-            curr.next = self.swapPairs(nextHead)
-            return pre
+        counter: int = 0
+        while counter < 2 and curr:
+            nxt = curr.next
+            curr.next = pre
+            pre = curr
+            curr, counter = nxt, counter+1
+        curr: Optional[Node] = pre
+        while curr.next:
+            curr = curr.next
+        curr.next = self.swapPairs(nextHead)
+        return pre
