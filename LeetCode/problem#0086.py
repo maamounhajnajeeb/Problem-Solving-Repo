@@ -27,25 +27,22 @@ class Solution:
         dummySmall: Optional[ListNode] = ListNode()
         
         # 3] assigning pointers
-        bigPointer: Optional[ListNode]; smallPointer: Optional[ListNode]; curr: Optional[ListNode]
-        bigPointer, smallPointer, curr = dummyBig, dummySmall, head
+        bigPointer: Optional[ListNode]; smallPointer: Optional[ListNode]
+        bigPointer, smallPointer = dummyBig, dummySmall
         
         # 4] looping through the head linked list and adding nodes to the new linked-list 
-        while curr:
-            tmp: Optional[ListNode] = curr.next
-            curr.next = None
-            if curr.val < x:
-                smallPointer.next = curr
+        while head:
+            if head.val < x:
+                smallPointer.next = head
                 smallPointer = smallPointer.next
             else:
-                bigPointer.next = curr
+                bigPointer.next = head
                 bigPointer = bigPointer.next
-            curr = tmp
+            head = head.next
         
         # 5] take care of garbage data
         smallPointer.next = dummyBig.next
-        head = dummySmall.next
-        dummyBig, dummySmall = None, None
+        bigPointer.next, dummmyBig = None, None
         
         # 6] returning the new head
-        return head
+        return dummySmall.next
