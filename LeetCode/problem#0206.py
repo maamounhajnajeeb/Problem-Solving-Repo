@@ -21,12 +21,11 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        curr: Optional[Node]; pre: Optional[Node]
+        curr: Optional[Node]
         curr, pre = head, None
         while curr:
             nxt = curr.next
             curr.next = pre
-            pre = curr
-            curr = nxt
+            pre, curr = curr, nxt
         curr, head = None, None
         return pre
