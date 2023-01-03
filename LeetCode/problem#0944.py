@@ -37,19 +37,12 @@
 
 class Solution:
     def minDeletionSize(self, strs: list[str]) -> int:
-        smalls: str = "abcdefghijklmnopqrstuvwxyz"
-        Letters: dict[str:int] = {}
-        i: int = 0
-        while i < len(smalls):
-            Letters[smalls[i]] = i
-            i += 1
-        
         k: int; j: int
         j, k = 0, 0
         while j < len(strs[0]):
             i = 0
             while i < len(strs)-1:
-                if Letters[strs[i][j]] > Letters[strs[i+1][j]]:
+                if strs[i][j] > strs[i+1][j]:
                     k, i = k+1, len(strs)
                 i += 1
             j += 1
