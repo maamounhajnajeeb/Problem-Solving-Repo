@@ -22,3 +22,12 @@ class Solution:
             else:
                 s.add(i)
         return s.pop()
+
+    
+# Another Solution #
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res: int = 0
+        for i in nums:
+            res = res ^ i
+        return res
